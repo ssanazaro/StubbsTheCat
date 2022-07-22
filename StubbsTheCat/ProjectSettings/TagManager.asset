@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Building
+  - Collectible
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -47,4 +49,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3488986101
+    locked: 0
+  - name: Building
+    uniqueID: 2373582309
+    locked: 0
+  - name: Objects
+    uniqueID: 26544543
     locked: 0
