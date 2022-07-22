@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 	public float speed = 5f;
 	public float mapWidth = 10f;
 	public float jumpAmount = 10f;
+	public bool isGrounded = false;
 
 	private Rigidbody2D rb;
 
@@ -26,7 +27,10 @@ public class Player : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				Jump();
+				if (isGrounded == true)
+				{
+					Jump();
+				}
 			}
 			var movement = HandleMovement();
 			Mathf.Clamp(movement.x, -mapWidth, mapWidth);
@@ -35,6 +39,7 @@ public class Player : MonoBehaviour
 
 	void Jump()
 	{
+
 		rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
 	}
 
@@ -59,20 +64,33 @@ public class Player : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.tag.Equals("Enemy"))
+
+		if (collision.gameObject.tag.Equals("Building"))
 		{
-			if (gameObject.GetComponent<Renderer>().material.color == Color.blue)
-			{
-				Destroy(collision.gameObject);
-			}
-			else
-			{
-				Destroy(gameObject);
-			}
+			isGrounded = true;
 		}
-		if (collision.gameObject.tag.Equals("Collectible"))
+		//if (collision.gameObject.tag.Equals("Enemy"))
+		//{
+		//	if (gameObject.GetComponent<Renderer>().material.color == Color.blue)
+		//	{
+		//		Destroy(collision.gameObject);
+		//	}
+		//	else
+		//	{
+		//		Destroy(gameObject);
+		//	}
+		//}
+		//if (collision.gameObject.tag.Equals("Collectible"))
+		//{
+		//	gameObject.GetComponent<Renderer>().material.color = Color.blue;
+		//}
+	}
+
+	private void OnCollisionExit2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag.Equals("Building"))
 		{
-			gameObject.GetComponent<Renderer>().material.color = Color.blue;
+			isGrounded = false;
 		}
 	}
 
