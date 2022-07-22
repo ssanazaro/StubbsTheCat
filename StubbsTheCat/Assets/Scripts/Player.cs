@@ -74,6 +74,14 @@ public class Player : MonoBehaviour
 			powerUpTimer = Time.time;
 			jumpAmount = 12;
 		}
+		if (collision.gameObject.tag.Equals("Victory Building"))
+		{
+			FindObjectOfType<GameManager>().WinGame();
+		}
+		if (collision.gameObject.tag.Equals("Ground") || collision.gameObject.tag.Equals("Enemy"))
+		{
+			FindObjectOfType<GameManager>().LoseGame();
+		}
 	}
 
 	private void OnCollisionExit2D(Collision2D collision)
