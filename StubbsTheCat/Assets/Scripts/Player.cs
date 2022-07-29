@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 	public float jumpAmount = 10f;
 	public bool isGrounded = false;
 	public float powerUpTimer = 0;
+	//public int score = 0;
 
 	private Rigidbody2D rb;
 
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour
 			gameObject.GetComponent<Renderer>().material.color = Color.blue;
 			powerUpTimer = Time.time;
 			jumpAmount = 12;
+			FindObjectOfType<Score>().IncreaseScore();
 		}
 		if (collision.gameObject.tag.Equals("Victory Building"))
 		{
