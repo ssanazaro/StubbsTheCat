@@ -8,11 +8,13 @@ public class GameManager : MonoBehaviour
 {
 	public void WinGame()
 	{
+		FindObjectOfType<EndOfGame>().Victory();
 		StartCoroutine(RestartLevel());
 	}
 
 	public void LoseGame()
 	{
+		FindObjectOfType<EndOfGame>().Defeat();
 		StartCoroutine(RestartLevel());
 	}
 
